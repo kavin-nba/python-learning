@@ -4,19 +4,19 @@ while True:
     op = input('operator: ')
     c = int(input('second num: '))
     if op == '+':
-        print(b + d)
+        print(a + c)
     elif op == '-':
-        print(b - d)
+        print(a - c)
     elif op == '*':
-        print(b * d)
+        print(a * c)
     elif op == '/':
-        print(b / d)
+        print(a / c)
     elif op == '//':
-        print(b // d)
+        print(a // c)
     elif op == '**':
-        print(b ** d)
+        print(a ** c)
     elif op == '%':
-        print(b % d)
+        print(a % c)
     elif op == '==':
         print("num1 is equal to num2")
     elif op == '!=':
@@ -25,8 +25,8 @@ while True:
         print("num1 is greater than num2")
     elif op == '<':
         print("num1 is is lesser than num2")
-    q = input('do you want to continue?: ')
-    if q == 'y':
-        continue
-    else:
+    elif op == 'exit':
+        print("program exit")
         break
+    else:
+        print("wrong operator")
