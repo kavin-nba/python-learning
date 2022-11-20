@@ -25,9 +25,13 @@ while True:
     elif operator == '!=':
         print("num1 is not equal to num2")
     elif operator == '>':
-        print("num1 is greater than num2")
+        if number1 > number2:
+            print("num1 is greater than num2")
+        else:
+            print("num1 is not greater than num2")
     elif operator == '<':
-        print("num1 is is lesser than num2")
+        if number1 < number2:
+            print("num1 is is lesser than num2")
     # elif operator == 'exit':
     #     print("program exit")
     #     break
