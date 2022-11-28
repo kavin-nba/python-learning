@@ -2,6 +2,7 @@ import sqlite3
 from sqlite3 import Cursor
 from werkzeug.security import check_password_hash, generate_password_hash
 
+
 def connect_database():
     cursor = None
     try:
@@ -29,10 +30,10 @@ def create_user_table(cursor: Cursor) -> bool:
 def create_password_table(cursor: Cursor) -> bool:
     try:
         cursor.execute(
-            "CREATE TABLE if not exists password(username varchar(60), website_username varchar(100), website_url varchar(100), website_password varchar(100);")
+            "CREATE TABLE if not exists password(username varchar(60), website_username varchar(100), website_url varchar(100), website_password varchar(100));")
         return True
     except Exception as e:
-        print("create user table error")
+        print("create password table error")
         print(e)
 
     return True

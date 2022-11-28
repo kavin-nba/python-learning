@@ -34,14 +34,12 @@ def login():
                 cursor = assert_db()
                 if not authenticate_email(cursor, email, password):
                     error = 'login error'
-
+                else:
+                    return redirect(url_for("index"))
             except Exception as e:
                 error = 'database exception'
 
-        else:
-            return redirect(url_for("index"))
-    context = {}
-    context['error'] = error
+    context = {'error': error}
     return render_template('login.html', context=context)
 
 
@@ -62,20 +60,14 @@ def register():
 
         if error is None:
             try:
-                print('hi1')
                 cursor = assert_db()
-                print('hi2')
                 if not check_email(cursor, email):
-                    print('hi3')
                     if not insert_user(cursor, username, email, password):
-                        print('hi4')
                         error = 'database error'
-
+                    else:
+                        return redirect(url_for("login"))
             except Exception as e:
                 error = 'database exception'
 
-        else:
-            return redirect(url_for("login"))
-    context = {}
-    context['error'] = error
-    return render_template('register.html', context=context)
+    context = {'error': error}
+    return render_template('login.html', context=context)
