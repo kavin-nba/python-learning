@@ -1,110 +1,114 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Password Manager</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}"/>
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
+<head>
+    <title>Password Manager</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}"/>
+</head>
+<body class="homepage is-preload">
+<div id="page-wrapper">
 
-			<!-- Header -->
-				<div id="header">
+    <!-- Header -->
+    <div id="header">
 
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-								<h1><a href="/" id="logo">Password Manager</a></h1>
-								<hr />
-								<p>Best password manager</p>
-							</header>
-							<footer>
-								<a href="#banner" class="button circled scrolly">Login</a>
-							</footer>
-						</div>
+        <!-- Inner -->
+        <div class="inner">
+            <header>
+                <h1><a href="/" id="logo">Password Manager</a></h1>
+                <hr/>
+                <p>Best password manager</p>
+                {% if session['email'] %}
+                <p>{{session['email']}}</p>
+                {% endif %}
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								
-								<li><a href="/login">login/signup</a></li>
-								<li><a href="/">home</a></li>
-															</ul>
-						</nav>
+            </header>
+            <footer>
+                <a href="#banner" class="button circled scrolly">Login</a>
+            </footer>
+        </div>
 
-				</div>
-			<!--password table display-->
-			<style>
-			table, th, td {
-  				padding: 2px;
-				border:3px solid black;
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
 
-}
-</style>
+                <li><a href="/login">login/signup</a></li>
+                <li><a href="/">home</a></li>
+            </ul>
+        </nav>
 
-<table style="width:100%">
-  <tr>
-    <th>Username</th>
-    <th>Website Username</th>
-    <th>Website URL</th>
-  	<th>Website Password</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>alfred_23</td>
-    <td>google.com</td>
-	<td>pass</td>
-  </tr>
-  <tr>
-    <td>alfred futterkiste</td>
-    <td>alfred_2312</td>
-    <td>instagram.com</td>
-	<td>123456</td>
-  </tr>
-  <tr>
-    <td>alfred futterkiste</td>
-    <td>alfred_2312</td>
-    <td>instagram.com</td>
-	<td>123456</td>
-  </tr>
-  <tr>
-    <td>alfred futterkiste</td>
-    <td>alfred_2312</td>
-    <td>instagram.com</td>
-	<td>123456</td>
-  </tr>
-  <tr>
-    <td>alfred futterkiste</td>
-    <td>alfred_2312</td>
-    <td>instagram.com</td>
-	<td>123456</td>
-  </tr>
+    </div>
+    <!--password table display-->
+    <style>
+        table, th, td {
+            padding: 2px;
+            border: 3px solid black;
 
-</table>
+        }
+    </style>
 
-			<!-- Banner -->
-				<section id="banner">
-					<header>
-						<h2>End Of <strong>PAGE</strong>.</h2>
-						<p>
-							
-							Make it just your password not all
-						</p>
-						<p>-xxx</p>
-					</header>
-				</section>
+    <table style="width:100%">
+        <tr>
+            <th>Username</th>
+            <th>Website Username</th>
+            <th>Website URL</th>
+            <th>Website Password</th>
+        </tr>
+        <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>alfred_23</td>
+            <td>google.com</td>
+            <td>pass</td>
+        </tr>
+        <tr>
+            <td>alfred futterkiste</td>
+            <td>alfred_2312</td>
+            <td>instagram.com</td>
+            <td>123456</td>
+        </tr>
+        <tr>
+            <td>alfred futterkiste</td>
+            <td>alfred_2312</td>
+            <td>instagram.com</td>
+            <td>123456</td>
+        </tr>
+        <tr>
+            <td>alfred futterkiste</td>
+            <td>alfred_2312</td>
+            <td>instagram.com</td>
+            <td>123456</td>
+        </tr>
+        <tr>
+            <td>alfred futterkiste</td>
+            <td>alfred_2312</td>
+            <td>instagram.com</td>
+            <td>123456</td>
+        </tr>
+
+    </table>
+
+    <!-- Banner -->
+    <section id="banner">
+        <header>
+            <h2>End Of <strong>PAGE</strong>.</h2>
+            <p>
+
+                Make it just your password not all
+            </p>
+            <p>-xxx</p>
+        </header>
+    </section>
 
 
-		<!-- Scripts -->
-			<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/jquery.dropotron.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/jquery.scrollex.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
-			<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
-		</div>
-	</body>
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.dropotron.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+</div>
+</body>
 </html>
