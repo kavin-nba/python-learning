@@ -30,7 +30,7 @@ def create_user_table(cursor: Cursor) -> bool:
 def create_password_table(cursor: Cursor) -> bool:
     try:
         cursor.execute(
-            "CREATE TABLE if not exists password(username varchar(60), website_username varchar(100), website_url varchar(100), website_password varchar(100));")
+            "CREATE TABLE if not exists password(email varchar(60), website_username varchar(100), website_url varchar(100), website_password varchar(100));")
         return True
     except Exception as e:
         print("create password table error")
@@ -55,7 +55,7 @@ def assert_database(cursor: Cursor) -> bool:
 def insert_user(cursor: Cursor, username: str, email: str, password: str) -> bool:
     hashed_password = generate_password_hash(password)
     try:
-        if check_email(cursor, username):
+        if not assert_email(cursor, username):
             cursor.execute(
                 "INSERT INTO user VALUES(?, ?, ?);", (username, email, hashed_password))
             cursor.connection.commit()
@@ -70,10 +70,10 @@ def insert_user(cursor: Cursor, username: str, email: str, password: str) -> boo
 
 def insert_password_entry(cursor: Cursor, email: str, website_username: str, website_url: str,
                           website_password: str) -> bool:
-    hashed_website_password = generate_password_hash(website_password)
     try:
         cursor.execute(
-            "INSERT INTO password VALUES(?, ?, ?, ?);", (email, website_username, website_url, hashed_website_password))
+            "INSERT INTO password VALUES(?, ?, ?, ?);",
+            (email, website_username, website_url, website_password))
         cursor.connection.commit()
         return True
     except Exception as e:
@@ -111,26 +111,26 @@ def update_password_entry(cursor: Cursor, email: str, website_username: str, web
 
 
 def authenticate_email(cursor: Cursor, email: str, password: str) -> bool:
-    hashed_password = generate_password_hash(password)
+    # hashed_password = generate_password_hash(password)
     try:
         result = cursor.execute(
             'SELECT password FROM user WHERE email = ?;', (email,)).fetchall()
-        print(result)
-        return True
+        if check_password_hash(result[0][0], password):
+            return True
     except Exception as e:
         print("authentication error")
         print(e)
     return False
 
 
-def check_email(cursor: Cursor, email: str) -> bool:
+def assert_email(cursor: Cursor, email: str) -> bool:
     try:
         result = cursor.execute(
             'SELECT COUNT(email) FROM user WHERE email = ?;', (email,)).fetchall()
-        if len(result) > 0:
+        if result[0][0]:
             return True
     except Exception as e:
-        print("check email error")
+        print("assert email error")
         print(e)
     return False
 
@@ -138,13 +138,23 @@ def check_email(cursor: Cursor, email: str) -> bool:
 def fetch_password_entry(cursor: Cursor, email: str) -> list or None:
     try:
         result = cursor.execute(
-            'SELECT * FROM user WHERE email = ?;', (email,)).fetchall()
-        return result
+            'SELECT * FROM password WHERE email = ?;', (email,)).fetchall()
+        return list(result)
     except Exception as e:
         print("fetch password error")
         print(e)
     return None
 
+
+def fetch_user_entry(cursor: Cursor, email: str) -> list or None:
+    try:
+        result = cursor.execute(
+            'SELECT * FROM user WHERE email = ?;', (email,)).fetchall()
+        return list(result[0])[:-1]
+    except Exception as e:
+        print("fetch password error")
+        print(e)
+    return None
 # cursor = connect_database()
 # assert_database(cursor)
 #

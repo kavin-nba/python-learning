@@ -215,3 +215,11 @@
 		});
 
 })(jQuery);
+
+function displayForm(){
+	hidden = document.getElementsByClassName('password-table-form-hidden')
+	for (let hiddenKey of hidden) {
+		hiddenKey.style.visibility = "initial";
+	}
+	document.getElementById('password-table-form-active').style.visibility = "hidden";
+}

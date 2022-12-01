@@ -14,23 +14,27 @@
 <p>
     <!--<button class="button button1" onclick="document.location='index.html'">Home</button>-->
 
-<ul>
-    <li><a href="/" class="button button1">home</a></li>
-</ul>
+<!--<ul>-->
+<!--    <li><a href="/" class="button button1">home</a></li>-->
+<!--</ul>-->
+
 <div class="cont">
     <div class="form sign-in">
-        <h2>Welcome</h2>
+        <h2>Login</h2>
         <form action="/login" method="post" id="loginForm">
             <label>
                 <span>Email</span>
-                <input name="email" type="email" value="" required/>
+                <input name="email" type="email" value="{{context['email']}}" required/>
             </label>
             <label>
                 <span>Password</span>
-                <input name="password" type="password" value="" required/>
+                <input name="password" type="password" value="{{context['password']}}" required/>
             </label>
             <p class="forgot-pass">Forgot password?</p>
-            <input type="submit" class="submit" value="Submit"/>
+            <input type="submit" class="submit" value="Login"/>
+            {% if context['error'] %}
+            <p class="form-error">{{context['error']}}</p>
+            {% endif %}
         </form>
         <!--            <button type="button" form="loginForm" value="Submit">Sign In</button>-->
     </div>
@@ -54,33 +58,33 @@
             <form action="/register" method="post" id="registerForm">
                 <label>
                     <span>Name</span>
-                    <input name="username" type="text" value="" required/>
+                    <input name="username" type="text" value="{{context['username']}}" required/>
                 </label>
                 <label>
                     <span>Email</span>
-                    <input name="email" type="email" value="" required/>
+                    <input name="email" type="email" value="{{context['email']}}" required/>
                 </label>
                 <label>
                     <span>Password</span>
-                    <input name="password" type="password" value="" required/>
+                    <input name="password" type="password" value="{{context['password']}}" required/>
                 </label>
-                <input type="submit" class="submit" value="Submit"/>
+                <input type="submit" class="submit" value="Sign Up"/>
+                {% if context['error'] %}
+                <p class="form-error">{{context['error']}}</p>
+                {% endif %}
             </form>
             <!--            <button type="button" class="submit" form="registerForm" value="Submit">Sign Up</button>-->
         </div>
     </div>
 </div>
-{% if context['error'] %}
-<p>{{context['error']}}</p>
-{% endif %}
-{% if session['error'] %}
-<p>{{session['error']}}</p>
-{% endif %}
 <script>
     document.querySelector('.img__btn').addEventListener('click', function () {
         document.querySelector('.cont').classList.toggle('s--signup');
     });
 </script>
-
+{% if context['page'] and context['page']=='register' %}
+<script>document.querySelector('.cont').classList.toggle('s--signup');
+</script>
+{% endif %}
 </body>
 </html>

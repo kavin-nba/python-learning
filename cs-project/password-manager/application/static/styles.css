@@ -107,6 +107,12 @@ input[type=submit] {
     color: #fff;
     font-size: 15px;
     cursor: pointer;
+    padding-bottom: 0;
+}
+
+.form-error{
+    text-align: center;
+    color: red;
 }
 
 .img {
